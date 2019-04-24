@@ -8,7 +8,4 @@ pip install -r requirements.txt
 ### Demonstration
 [Click here to watch a video](https://vimeo.com/282215720)
 ## Screenshots
-#### Input file
-![cada](individual.png)
-### Output file
-![todos](unidos.png)
+
