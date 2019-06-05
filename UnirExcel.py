@@ -21,9 +21,9 @@ dataFrame = pd.concat(frames)
 colunas = [i for i in dataFrame.columns]
 print('Available columms: ')
 while True:
+    for i,n in enumerate(colunas): 
+        print (i,n)
     try:
-        for i,n in enumerate(colunas): 
-            print (i,n)
         coluna = int(input('Input file - pick a columm to generate sheets from: '))
     except Exception:
         continue
