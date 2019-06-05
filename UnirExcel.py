@@ -1,13 +1,12 @@
-instruc='''Notas:
-1.Todos os arquivos de excel nessa pasta serão unificados e organizados por abas de acordo com a coluna selecionada.
-2.Eles devem ter extensão (final do arquivo): .xls ou .xlsx.
-3.Não há problema se houver arquivos com outras extensões nessa pasta.
+import os,time
+import pandas as pd
+instruc='''Instructions:
+1.All the Excel files (.xls or .xlsx) in this folder will be merged into a new single file organized by sheets according to the chosen columm
+2.Any other files with different extensions will be ignored, so don't worry about them.
 ------------------------------------------------------------------------- 
 '''
 print(instruc)
-destino = input('Arquivo destino - escolha um nome: ')
-import os,time
-import pandas as pd
+destino = input('Output file - choose a name: ')
 arquivos = []
 excel = ('.xls','.xlsx')
 for cada in os.listdir():
@@ -18,12 +17,13 @@ for i in arquivos:
     a = pd.read_excel(i)
     frames.append(a)
 dataFrame = pd.concat(frames)
-print('Colunas disponíveis: ')
-for i in dataFrame.columns: print (i)
-coluna = input('Arquivos de origem - coluna a ser filtrada: ')
+print('Available columms: ')
+for i in dataFrame.columns: 
+    print (i)
+coluna = input('Input file - pick a columm to generate sheets from: ')
 abas = dataFrame[coluna].unique()
 with pd.ExcelWriter(destino+'.xls') as writer:
         for i in abas:
             dataFrame[dataFrame[coluna]==i].to_excel(writer,index=False,sheet_name=(str(i)))
-print('Arquivo {} criado com sucesso!'.format(destino))			
+print(f'File {destino} created successfully!')			
 time.sleep(3)
